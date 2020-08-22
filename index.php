@@ -120,11 +120,11 @@ function editpage(id) {
         <button id="saveContact" class="btn btn-primary" onclick="savecont()">Save Contact</button>
       </div>
     </div>
-    <div id="demo"></div>
+<!--     <div id="demo"></div>
       <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>data add success!</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true">&times;</span> -->
         </button>
       </div>
     <table class="table">
