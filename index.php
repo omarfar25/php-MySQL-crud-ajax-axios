@@ -10,39 +10,33 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>crud ajax php</title>
-  </head>
-<!-- <script>
-function loadDoc() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML = this.responseText;
-      console.log('i am ajax'+this.responseText)
-    }
-  };
-  xhttp.open("GET", "ajax_info.php", true);
-  xhttp.send();
-}
-</script> -->
-<script type="text/javascript">
-  //------------ insert data------------------
-function savecont() {
-  var xhttp = new XMLHttpRequest();
-  var nf= document.getElementById("nameField").value;
-  var pf= document.getElementById("phoneField").value;
-  var ef= document.getElementById("emailField").value;
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      // var alrt = document.getElementById("demo");
-      if ( this.responseText === "success") {
-       // alrt.innerHTML = '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>data add success!</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> </div>' ;
-       backidx()}
-    }
-  };
 
-  xhttp.open("GET", "add.php?nf="+nf+"&pf="+pf+"&+ef="+ef, true);
-  xhttp.send();
-}
+    <!-- Using Axios CDN: -->
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+<script type="text/javascript">
+    //------------ insert data with axios------------------
+    function savecont() {
+    var nf= document.getElementById("nameField").value;
+    var pf= document.getElementById("phoneField").value;
+    var ef= document.getElementById("emailField").value;
+
+    let contact = {
+        name: nf,
+        phone: pf,
+        email: ef
+    }
+    axios.post('all_fn.php',contact)
+      .then(resp => {
+       console.log(resp.data)
+      })
+      .catch(err => console.log(err));
+  }
+
+// .forEach(user => {
+//           console.log(user.name)
+//         });
 </script>
 <script type="text/javascript">
   //------------ delete data------------------
@@ -127,12 +121,12 @@ function editpage(id) {
       </div>
     </div>
     <div id="demo"></div>
-<!--       <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>data add success!</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div> -->
+      </div>
     <table class="table">
       <thead class="thead-dark">
         <tr>
@@ -157,47 +151,13 @@ function editpage(id) {
 	      <td>
           <button id="del" type="button" class="btn btn-warning mx-1" onclick="editpage(<?php echo $all_data['id'] ?>)">edit</button>
           <button id="del" type="button" class="btn btn-danger mx-1" onclick="delcont(<?php echo $all_data['id'] ?>)">Delete</button>
-        </td> 
+        </td>
 	    </tr>
        <?php } } ?>
       </tbody>
     </table>
   </div>
 
-<!--
-  <div class="modal fade" id="contactEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Contact</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="edit-name" class="col-form-label">Edit Name</label>
-              <input type="text" class="form-control" id="edit-name">
-            </div>
-            <div class="form-group">
-              <label for="edit-phone" class="col-form-label">Edit Phone</label>
-              <input type="text" class="form-control" id="edit-phone">
-            </div>
-            <div class="form-group">
-              <label for="edit-email" class="col-form-label">Edit Email</label>
-              <input type="email" class="form-control" id="edit-email">
-            </div>
-
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" id="updateContact" class="btn btn-primary">Save Contact</button>
-        </div>
-      </div>
-    </div>
-  </div> -->
 <!--   	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
 	<!-- <script type="text/javascript" src="index.js"></script> -->
       <!-- Optional JavaScript -->
